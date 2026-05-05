@@ -52,4 +52,10 @@ public class ActivityService {
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
+
+    public ActivityResponse getActivity(String activityId) {
+        return activityRepository.findById(activityId)
+                .map(this::mapToResponse)
+                .orElseThrow(() -> new RuntimeException("Invalid Activity Id" + activityId));
+    }
 }
